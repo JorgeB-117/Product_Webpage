@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return response.json();
         })
-        
+
 // Task 3: Display Product Details Dynamically
 
         .then(data => {
@@ -24,10 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h2>${name}</h2>
                     <p>Company: ${company}</p>
                     <p>Price: $${(price / 10).toFixed(2)}</p>
-                <div>
-                `; // This will update dynamically in the html file 
+                <div>`;  // This will update dynamically in the html file 
                 productList.appendChild(productDiv);
             });
         })
 
+// Task 4: Handle Errors Gracefully    
+
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '<p>Failed to load products. Please try again later.</p>';
+        });
 });
